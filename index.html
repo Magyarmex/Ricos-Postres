@@ -10,294 +10,60 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --cream: #fff8f2;
-      --rose: #f6dce5;
-      --berry: #7f4f5c;
-      --mint: #d7efe3;
-      --latte: #e7d7ca;
-      --text: #4a3a34;
-      --card: rgba(255, 255, 255, 0.82);
-      --shadow: 0 12px 40px rgba(94, 65, 58, 0.15);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Nunito', sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #fffdfb 0%, #fdf3f7 45%, #f5fff9 100%);
-      overflow-x: hidden;
-    }
-
-    .floating-berries::before,
-    .floating-berries::after {
-      content: "";
-      position: fixed;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.9), rgba(246,220,229,0.45));
-      z-index: -1;
-      filter: blur(2px);
-      animation: drift 10s ease-in-out infinite alternate;
-    }
-    .floating-berries::before { left: -90px; top: 15vh; }
-    .floating-berries::after { right: -100px; bottom: 10vh; animation-delay: 2s; }
-
-    @keyframes drift {
-      from { transform: translateY(0px) rotate(0deg); }
-      to { transform: translateY(-16px) rotate(8deg); }
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 20;
-      backdrop-filter: blur(8px);
-      background: rgba(255, 248, 242, 0.8);
-      border-bottom: 1px solid rgba(127,79,92,0.15);
-    }
-
-    .nav-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: .75rem 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--berry);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    nav { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: flex-end; }
-    nav a {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: 700;
-      padding: .35rem .65rem;
-      border-radius: 999px;
-      transition: .25s;
-    }
-    nav a:hover { background: var(--rose); color: var(--berry); }
-
-    section { padding: 6rem 1.2rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: grid;
-      align-items: center;
-      padding-top: 4rem;
-    }
-    .hero video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.05) contrast(0.95);
-    }
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(58,31,45,0.58), rgba(127,79,92,0.2));
-    }
-    .hero-card {
-      position: relative;
-      max-width: 700px;
-      background: rgba(255,255,255,.86);
-      border: 1px solid rgba(255,255,255,.6);
-      box-shadow: var(--shadow);
-      padding: 2rem;
-      border-radius: 24px;
-      animation: fadeUp 1s ease;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h1, h2 { font-family: 'Playfair Display', serif; margin-top: 0; }
-    h1 { font-size: clamp(2rem, 5vw, 3.8rem); color: #5e3341; }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: #6e4550; }
-
-    .btns { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1rem; }
-    .btn {
-      text-decoration: none;
-      border-radius: 999px;
-      font-weight: 700;
-      padding: .75rem 1.1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: .45rem;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-    .btn-primary { background: var(--berry); color: #fff; }
-    .btn-soft { background: var(--mint); color: #2f5a45; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-      margin-top: 1.2rem;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid rgba(127,79,92,0.1);
-      border-radius: 18px;
-      padding: 1rem;
-      box-shadow: var(--shadow);
-      transition: transform .25s;
-    }
-    .card:hover { transform: translateY(-4px); }
-
-    .socials a { color: var(--berry); font-weight: 700; text-decoration: none; }
-
-    footer {
-      padding: 2rem 1rem 3rem;
-      text-align: center;
-      color: #7b5f69;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 640px) {
-      .hero-card { padding: 1.25rem; }
-      nav { gap: .3rem; }
-      nav a { font-size: .9rem; }
-    }
+    :root{--cream:#fff8f2;--rose:#f6dce5;--berry:#7f4f5c;--mint:#d7efe3;--text:#4a3a34;--card:rgba(255,255,255,.82);--shadow:0 12px 40px rgba(94,65,58,.15)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Nunito,sans-serif;color:var(--text);background:linear-gradient(180deg,#fffdfb 0%,#fdf3f7 45%,#f5fff9 100%);overflow-x:hidden}
+    header{position:fixed;top:0;width:100%;z-index:20;backdrop-filter:blur(8px);background:rgba(255,248,242,.85);border-bottom:1px solid rgba(127,79,92,.15)}
+    .nav-wrap{max-width:1120px;margin:0 auto;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--berry);font:700 1.2rem 'Playfair Display',serif}.brand img{width:38px;height:38px}
+    nav{display:flex;gap:.8rem;flex-wrap:wrap}nav a{text-decoration:none;color:var(--text);font-weight:700;padding:.35rem .65rem;border-radius:999px}nav a:hover{background:var(--rose)}
+    section{padding:6rem 1.2rem}.container{max-width:1120px;margin:0 auto}
+    .hero{min-height:100vh;position:relative;display:grid;align-items:center;padding-top:4rem}.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.overlay{position:absolute;inset:0;background:linear-gradient(120deg,rgba(58,31,45,.6),rgba(127,79,92,.25))}
+    .hero-card{position:relative;max-width:760px;background:rgba(255,255,255,.88);padding:2rem;border-radius:24px;box-shadow:var(--shadow)}
+    h1,h2{font-family:'Playfair Display',serif;margin-top:0} h1{font-size:clamp(2rem,5vw,3.8rem);color:#5e3341} h2{font-size:clamp(1.5rem,3vw,2.1rem);color:#6e4550}
+    .btn{display:inline-flex;padding:.75rem 1.1rem;border-radius:999px;font-weight:700;text-decoration:none}.btn-primary{background:var(--berry);color:#fff}.btn-soft{background:var(--mint);color:#2f5a45}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}.card{background:var(--card);border-radius:18px;padding:1rem;box-shadow:var(--shadow)}
+    .logo-panel{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.75);padding:1rem 1.2rem;border-radius:16px;margin-top:1rem}
+    .logo-panel img{width:92px;height:92px}
+    .social-logo{display:flex;align-items:center;gap:.6rem;font-weight:700;color:var(--berry)}
+    .social-logo svg{width:22px;height:22px}
+    .preview{width:100%;border-radius:14px;border:1px solid rgba(127,79,92,.16);box-shadow:var(--shadow);margin-top:.8rem}
+    .carousel{overflow:hidden;position:relative;border-radius:20px;padding:.7rem;background:rgba(255,255,255,.65)}
+    .track{display:flex;gap:1rem;width:max-content;animation:slide 26s linear infinite}
+    .post{width:280px;flex:none;text-decoration:none;color:inherit;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .post img{display:block;width:100%;height:280px;object-fit:cover}.post p{margin:.7rem .8rem 1rem;font-weight:700;color:#6b4250}
+    @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .reveal{opacity:0;transform:translateY(24px);transition:.6s ease}.reveal.visible{opacity:1;transform:none}
   </style>
 </head>
 <body>
-  <div class="floating-berries" aria-hidden="true"></div>
-  <header>
-    <div class="nav-wrap">
-      <a class="brand" href="#inicio">Ricos Postres</a>
-      <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#recetas">Recetas</a>
-        <a href="#redes">Redes</a>
-        <a href="#ia">IA Creativa</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </div>
-  </header>
+<header><div class="nav-wrap"><a class="brand" href="#inicio"><img src="assets/ricos-postres-Logo.svg" alt="Logo Ricos Postres">Ricos Postres</a><nav><a href="#inicio">Inicio</a><a href="#publicaciones">Publicaciones</a><a href="#redes">Redes</a><a href="#ia">IA Creativa</a><a href="#contacto">Contacto</a></nav></div></header>
+<main>
+<section class="hero" id="inicio">
+  <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/3026806/pexels-photo-3026806.jpeg"><source src="https://cdn.coverr.co/videos/coverr-making-a-layer-cake-1579/1080p.mp4" type="video/mp4"></video>
+  <div class="overlay"></div>
+  <div class="container"><article class="hero-card reveal"><h1>Recetas de postres fáciles, bonitas y deliciosas.</h1><p>Explora tutoriales claros, ideas creativas y contenido visual para inspirarte a preparar algo especial hoy mismo.</p><div style="display:flex;gap:.7rem;flex-wrap:wrap"><a class="btn btn-primary" href="#publicaciones">Ver últimas publicaciones</a><a class="btn btn-soft" href="#ia">Probar IA de postres</a></div><div class="logo-panel"><img src="assets/ricos-postres-Logo.svg" alt="ricos-postres-Logo"><p><strong>ricos-postres-Logo</strong><br>Identidad visual artesanal integrada en la experiencia del sitio.</p></div></article></div>
+</section>
 
-  <main>
-    <section class="hero" id="inicio">
-      <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/3026806/pexels-photo-3026806.jpeg">
-        <source src="https://cdn.coverr.co/videos/coverr-making-a-layer-cake-1579/1080p.mp4" type="video/mp4" />
-      </video>
-      <div class="overlay"></div>
-      <div class="container">
-        <article class="hero-card">
-          <h1>Recetas de postres fáciles, bonitas y deliciosas.</h1>
-          <p>Bienvenido al universo artesanal de <strong>Ricos Postres</strong>. Compartimos ideas paso a paso para que cocines sin complicaciones y con muchísimo estilo.</p>
-          <div class="btns">
-            <a class="btn btn-primary" href="#recetas">Ver recetas destacadas</a>
-            <a class="btn btn-soft" href="#ia">Probar IA de postres</a>
-          </div>
-        </article>
-      </div>
-    </section>
+<section id="publicaciones" class="reveal"><div class="container"><h2>Últimas publicaciones en Instagram</h2><p>Galería en carrusel con movimiento continuo. Haz click en cada publicación para abrirla en Instagram.</p><div class="carousel"><div class="track">
+<a class="post" href="https://www.instagram.com/p/DX7vGuFOe5d/" target="_blank" rel="noopener"><img src="assets/ig-brownies.svg" alt="Post brownies"><p>Brownies</p></a>
+<a class="post" href="https://www.instagram.com/p/DX9sr8vOE_w/" target="_blank" rel="noopener"><img src="assets/ig-fresa.svg" alt="Post fresa"><p>Fresa</p></a>
+<a class="post" href="https://www.instagram.com/p/DX_8yMVjm7g/" target="_blank" rel="noopener"><img src="assets/ig-vanilla.svg" alt="Post vanilla"><p>Vanilla</p></a>
+<a class="post" href="https://www.instagram.com/p/DX7vGuFOe5d/" target="_blank" rel="noopener"><img src="assets/ig-brownies.svg" alt="Post brownies"><p>Brownies</p></a>
+<a class="post" href="https://www.instagram.com/p/DX9sr8vOE_w/" target="_blank" rel="noopener"><img src="assets/ig-fresa.svg" alt="Post fresa"><p>Fresa</p></a>
+<a class="post" href="https://www.instagram.com/p/DX_8yMVjm7g/" target="_blank" rel="noopener"><img src="assets/ig-vanilla.svg" alt="Post vanilla"><p>Vanilla</p></a>
+</div></div></div></section>
 
-    <section id="recetas" class="reveal">
-      <div class="container">
-        <h2>Recetas para todos los días</h2>
-        <p>Desde ideas rápidas de 10 minutos hasta postres para celebraciones, con ingredientes accesibles en cualquier país hispanohablante.</p>
-        <div class="cards">
-          <article class="card"><h3>🍓 Vasitos de cheesecake</h3><p>Sin horno, cremosos y listos en poco tiempo.</p></article>
-          <article class="card"><h3>🍫 Brownie artesanal</h3><p>Textura húmeda y capa superior crujiente.</p></article>
-          <article class="card"><h3>🧁 Cupcakes decorados</h3><p>Ideas simples para lograr acabados de vitrina.</p></article>
-          <article class="card"><h3>🥭 Postres frutales</h3><p>Combinaciones tropicales frescas y coloridas.</p></article>
-        </div>
-      </div>
-    </section>
+<section id="redes" class="reveal"><div class="container"><h2>Contenido diario en redes</h2><div class="cards">
+<article class="card"><div class="social-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</div><p>Reels, carruseles de pasos y resultados finales.</p><a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.instagram.com/postres_ricosyesyes/">Ir a Instagram</a><img class="preview" src="assets/ig-vanilla.svg" alt="Preview visual Instagram"></article>
+<article class="card"><div class="social-logo"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.2 4.8c1.3 1 2.8 1.6 4.4 1.7v3.2a8.9 8.9 0 0 1-3.4-.8v6.2c0 3.8-3 6.9-6.8 6.9s-6.9-3.1-6.9-6.9 3.1-6.8 6.9-6.8c.3 0 .6 0 .9.1v3.3a3.6 3.6 0 0 0-.9-.1 3.5 3.5 0 1 0 3.5 3.5V2h2.3Z"/></svg>TikTok</div><p>Video-recetas rápidas, trucos y montajes visuales.</p><a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.tiktok.com/@ricospostres48?_r=1&_t=ZS-965XzfRihEL">Ir a TikTok</a><img class="preview" src="assets/ig-fresa.svg" alt="Preview visual TikTok"></article>
+</div></div></section>
 
-    <section id="redes" class="reveal">
-      <div class="container">
-        <h2>Contenido diario en redes sociales</h2>
-        <p>Publicamos videos, trucos y recetas para que te inspires todos los días.</p>
-        <div class="cards socials">
-          <article class="card">
-            <h3>TikTok</h3>
-            <p>Video-recetas rápidas, tendencias y tutoriales visuales.</p>
-            <a target="_blank" rel="noopener" href="https://www.tiktok.com/@ricospostres48?_r=1&_t=ZS-965XzfRihEL">Ir a TikTok →</a>
-          </article>
-          <article class="card">
-            <h3>Instagram</h3>
-            <p>Reels, carruseles de pasos y fotos de presentación final.</p>
-            <a target="_blank" rel="noopener" href="https://www.instagram.com/postres_ricosyesyes/">Ir a Instagram →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="ia" class="reveal">
-      <div class="container">
-        <h2>Crea tu postre con IA 🍒</h2>
-        <p>Usa nuestra herramienta para generar ideas únicas, variaciones de sabores y hasta imágenes de cómo podría verse tu creación.</p>
-        <div class="cards">
-          <article class="card">
-            <h3>Asistente Ricos McPostres</h3>
-            <p>Describe tus ingredientes o antojo y obtén recetas personalizadas e ilustradas.</p>
-            <a class="btn btn-primary" target="_blank" rel="noopener" href="https://chatgpt.com/g/g-69f8fc3a7ba48191bd9d7502d28a417c-ricos-mcpostres">Abrir herramienta IA</a>
-          </article>
-          <article class="card">
-            <h3>Ejemplos de uso</h3>
-            <ul>
-              <li>“Postre sin horno con mango y chocolate”.</li>
-              <li>“Receta para 4 personas con presupuesto bajo”.</li>
-              <li>“Versión sin lácteos, estilo gourmet”.</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contacto" class="reveal">
-      <div class="container">
-        <h2>¿Listo para crear algo delicioso?</h2>
-        <p>Guarda este sitio y visítanos cada semana para nuevas recetas, retos dulces y más creatividad pastelera.</p>
-        <div class="btns">
-          <a class="btn btn-primary" href="#inicio">Volver arriba</a>
-          <a class="btn btn-soft" target="_blank" rel="noopener" href="https://www.instagram.com/postres_ricosyesyes/">Escribir por Instagram</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    Hecho con amor para la comunidad repostera hispanohablante • Ricos Postres
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+<section id="ia" class="reveal"><div class="container"><h2>Crea tu postre con IA 🍒</h2><p>Describe ingredientes, tiempo disponible y estilo de postre. Obtén recetas nuevas e imágenes ilustrativas para inspirarte.</p><a class="btn btn-primary" target="_blank" rel="noopener" href="https://chatgpt.com/g/g-69f8fc3a7ba48191bd9d7502d28a417c-ricos-mcpostres">Abrir herramienta IA</a></div></section>
+<section id="contacto" class="reveal"><div class="container"><h2>¿Listo para crear algo delicioso?</h2><p>Guarda este sitio y vuelve pronto para descubrir más ideas dulces y contenido nuevo.</p><a class="btn btn-soft" href="#inicio">Volver arriba</a></div></section>
+</main>
+<footer style="padding:2rem;text-align:center;color:#7b5f69">Ricos Postres • Dulzura con estilo artesanal</footer>
+<script>
+const observer=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add('visible')),{threshold:.15});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
 </body>
 </html>
