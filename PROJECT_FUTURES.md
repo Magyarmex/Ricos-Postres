@@ -2,20 +2,20 @@
 
 ## Ideas prioritarias (no implementadas)
 
-1. **Integración real del feed de Instagram (API o embed oficial)**
-   - **Valor:** mostrar publicaciones reales en tiempo casi real.
-   - **Costo:** medio/alto.
-   - **Riesgo:** medio (tokens/permisos de plataforma).
-   - **Validación:** comparar CTR en carrusel actual vs feed dinámico.
+1. **Galería de recetas filtrable por dificultad/tiempo**
+   - **Valor:** permite descubrir recetas rápido según contexto real del usuario.
+   - **Costo:** medio (JS de filtrado + estructura de datos de recetas).
+   - **Riesgo:** bajo.
+   - **Validación:** medir clics en tarjetas y tiempo promedio en sección de recetas.
 
-2. **Sección de tutoriales en video con filtros (tiempo/dificultad)**
-   - **Valor:** mejora descubrimiento de contenido según necesidad del usuario.
+2. **Bloque de testimonios y UGC (fotos de seguidores)**
+   - **Valor:** aumenta confianza y sensación de comunidad.
+   - **Costo:** bajo/medio.
+   - **Riesgo:** medio (moderación de contenido).
+   - **Validación:** tasa de interacción en CTA y mensajes entrantes por Instagram.
+
+3. **Modo "receta del día" con calendario ligero**
+   - **Valor:** incentiva retorno frecuente al sitio.
    - **Costo:** medio.
    - **Riesgo:** bajo.
-   - **Validación:** tiempo promedio en sección + clics por filtro.
-
-3. **Formulario de sugerencias de recetas con priorización por votos**
-   - **Valor:** aumenta participación y aporta roadmap basado en comunidad.
-   - **Costo:** medio.
-   - **Riesgo:** bajo/medio (moderación).
-   - **Validación:** cantidad de propuestas recibidas y porcentaje de retorno.
+   - **Validación:** usuarios recurrentes semanales y CTR en recetas nuevas.
