@@ -1,7 +1,0 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1080'>
-<rect width='1080' height='1080' fill='#ffd9e5'/>
-<circle cx='540' cy='560' r='280' fill='#fff6fb'/>
-<g fill='#df4f6f'><circle cx='470' cy='520' r='100'/><circle cx='620' cy='550' r='120'/><circle cx='520' cy='660' r='110'/></g>
-<g fill='#5ba968'><ellipse cx='470' cy='430' rx='30' ry='15'/><ellipse cx='620' cy='430' rx='30' ry='15'/><ellipse cx='520' cy='560' rx='30' ry='15'/></g>
-<text x='540' y='140' text-anchor='middle' font-size='74' fill='#8c3c55' font-family='Georgia'>Fresa</text>
-</svg>
